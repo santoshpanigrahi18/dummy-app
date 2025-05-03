@@ -1,15 +1,19 @@
-def main():
-    print("Welcome to the Dummy App Form")
-    name = input("Enter your name: ")
-    email = input("Enter your email: ")
-    message = input("Enter your message: ")
+from flask import Flask, request
 
-    print("\n--- Form Submission Received ---")
-    print(f"Name: {name}")
-    print(f"Email: {email}")
-    print(f"Message: {message}")
-    print("\nThank you for submitting the form!")
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    main()
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        return f"Hello, {name}!"
+    return '''
+        <form method="post">
+            Enter your name: <input name="name">
+            <input type="submit">
+        </form>
+    '''
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
 
