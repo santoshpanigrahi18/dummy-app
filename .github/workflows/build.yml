@@ -20,6 +20,6 @@ jobs:
 
       - name: Upload to JFrog Artifactory
         run: |
-          curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG }} \
+          curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_API_KEY }} \
           -T build/dummy-app.zip \
           "https://trialnt381j.jfrog.io/artifactory/dummy-pypi/dummy-app.zip"
